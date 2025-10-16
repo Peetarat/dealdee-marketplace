@@ -21,6 +21,33 @@ const SELLER_ROLES = ["seller_advanced", "seller_premium", "admin"];
 // --- Callable Functions ---
 
 /**
+ * Lists all users in the system.
+ * The caller must be an authenticated admin.
+ */
+export const listUsers = onCall(
+  {region: "us-central1"}, async (request) => {
+  // 1. Check for admin role
+  if (request.auth?.token.role !== "admin") {
+    throw new HttpsError("permission-denied", "Only admins can list users.");
+  }
+
+  // 2. List users from Firebase Auth
+  try {
+    const userRecords = await admin.auth().listUsers(1000); // Get up to 1000 users
+    const users = userRecords.users.map((user) => ({
+      uid: user.uid,
+      email: user.email,
+      role: user.customClaims?.role || "unverified",
+    }));
+    return {users};
+  } catch (error) {
+    logger.error("Error listing users:", error);
+    throw new HttpsError("internal", 
+        "An unexpected error occurred while listing users.");
+  }
+});
+
+/**
  * Creates a new product listing.
  * The caller must be an authenticated seller.
  */
