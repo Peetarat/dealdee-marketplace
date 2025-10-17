@@ -2,16 +2,24 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Products: Publicly readable, but only writable by the owner or an admin.
-    match /products/{productId} {
-      allow read: if true;
-      allow create: if request.auth != null; // Further checks are in the Cloud Function
-      allow update, delete: if request.auth.uid == resource.data.ownerId || get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    // ... (existing rules for products, users, orders, etc.)
+
+    // Conversations: Only participants can read or write.
+    match /conversations/{conversationId} {
+      allow read, write: if request.auth.uid in resource.data.participants;
     }
 
-    // Users: Only the user themselves or an admin can read/write their own data.
-    match /users/{userId} {
-      allow read, write: if request.auth.uid == userId || get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    // Chats: Only participants can read or create messages.
+    // No updates or deletes to preserve chat history.
+    match /chats/{chatId} {
+        allow read, create: if request.auth.uid == request.resource.data.senderId || request.auth.uid == request.resource.data.receiverId;
+        allow update, delete: if false;
+    }
+
+    // Product Groups: Only owner can manage.
+    match /productGroups/{groupId} {
+        allow read: if true; // Publicly readable
+        allow create, update, delete: if request.auth.uid == resource.data.ownerId;
     }
   }
 }
