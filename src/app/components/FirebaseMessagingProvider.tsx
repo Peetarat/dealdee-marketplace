@@ -1,4 +1,4 @@
-'''use client';
+'use client';
 
 import { useEffect } from 'react';
 import { getMessaging, getToken } from 'firebase/messaging';
@@ -43,4 +43,3 @@ const FirebaseMessagingProvider = ({ children }: { children: React.ReactNode }) 
 };
 
 export default FirebaseMessagingProvider;
-'''

@@ -1,0 +1,22 @@
+"use strict";
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+(self["webpackChunk_N_E"] = self["webpackChunk_N_E"] || []).push([["_app-pages-browser_messages_ko_json"],{
+
+/***/ "(app-pages-browser)/./messages/ko.json":
+/*!**************************!*\
+  !*** ./messages/ko.json ***!
+  \**************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+module.exports = /*#__PURE__*/JSON.parse('{"LandingPage":{"title":"당신의 다음 멋진 거래가 여기에 있습니다.","subtitle":"언어 장벽이 없는 새롭고 중고 보물을 위한 마켓플레이스.","browseButton":"지금 모든 상품 둘러보기!","howItWorksTitle":"작동 방식","step1Title":"간편하게 게시","step1Text":"사진을 찍고, 세부 정보를 추가하고, 가격을 설정하세요. 몇 분 안에 상품을 판매할 준비가 완료됩니다.","step2Title":"즉시 연결","step2Text":"저희 자동 번역 시스템을 사용하면 언어에 관계없이 누구와도 채팅할 수 있습니다.","step3Title":"거래 성사","step3Text":"가격에 동의하고 만나세요. 원하는 방식으로 번거로움 없이 결제하세요.","aiFeatureTitle":"언어에 상관없이 누구에게나 판매하세요.","aiFeatureText":"저희 AI 기반 번역 시스템은 목록, 설명, 채팅에 원활하게 작동하여 태국의 다양한 외국인 커뮤니티에 시장을 엽니다.","popularCategoriesTitle":"인기 카테고리","ctaTitle":"다음 멋진 거래를 발견할 준비가 되셨습니까？","ctaSubtitle":"태국에서 가장 친근한 마켓플레이스에서 수천 명의 구매자 및 판매자와 함께하세요."},"Categories":{"electronics":"전자제품","fashion":"패션","hobbies":"취미 및 수집품","home":"홈 & 가든","kids":"엄마 & 키즈","otop":"OTOP 및 현지 상품"},"Footer":{"tagline":"모두가 같은 언어를 사용하는 곳","copyright":"© {year} DealDee. 모든 권리 보유.","about":"소개","aboutUs":"회사 소개","howToUse":"이용 안내","faq":"자주 묻는 질문","contactUs":"문의하기","legal":"법률 정보","terms":"서비스 이용 약관","privacy":"개인정보 처리방침","followUs":"팔로우하기"},"Header":{"signUp":"가입하기","signIn":"로그인","profile":"프로필","logout":"로그아웃"},"Login":{"welcome":"DealDee에 오신 것을 환영합니다","subtitle":"언어의 장벽 없이 구매하고 판매하려면 커뮤니티에 가입하세요.","googleButton":"Google로 계속하기","facebookButton":"Facebook으로 계속하기","orDivider":"또는","emailLabel":"이메일","passwordLabel":"비밀번호","togglePasswordVisibility":"비밀번호 표시 전환","forgotPassword":"비밀번호를 잊으셨나요?","loginButton":"로그인","signupLink":"계정이 없으신가요? 가입하기","termsPrefix":"계속 진행하면 당사의 ","termsOfService":"서비스 이용 약관","termsAnd":" 및 ","privacyPolicy":"개인정보 처리방침","termsSuffix":"에 동의하는 것으로 간주됩니다."},"SignUp":{"title":"계정 만들기","submitButton":"가입하기","loginLink":"이미 계정이 있으신가요? 로그인"},"Toast":{"signingIn":"로그인 중...","signInSuccess":"성공적으로 로그인되었습니다!","errorPrefix":"오류","creatingAccount":"계정 생성 중...","createSuccess":"계정이 성공적으로 생성되었습니다!","sendingResetEmail":"재설정 이메일 보내는 중...","resetEmailSent":"비밀번호 재설정 이메일을 보냈습니다! 받은 편지함을 확인하세요."},"ForgotPassword":{"title":"비밀번호를 잊으셨나요?","instructions":"문제 없습니다. 계정과 연결된 이메일 주소를 입력하시면 비밀번호 재설정 링크를 보내드립니다.","submitButton":"재설정 이메일 보내기","backToLogin":"로그인으로 돌아가기"}}');
+
+/***/ })
+
+}]);

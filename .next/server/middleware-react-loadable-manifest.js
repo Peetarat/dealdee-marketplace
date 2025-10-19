@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{}"
+self.__REACT_LOADABLE_MANIFEST="{\"app/components/LanguageProvider.tsx -> ../../../messages/en.json\":{\"id\":\"app/components/LanguageProvider.tsx -> ../../../messages/en.json\",\"files\":[\"static/chunks/_app-pages-browser_messages_en_json.js\"]}}"

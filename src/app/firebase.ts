@@ -17,11 +17,19 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 
 // Initialize and export Firebase services
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const functions = getFunctions(app);
 export const storage = getStorage(app);
-export const messaging = getMessaging(app);
+let messaging;
+if (typeof window !== 'undefined') {
+    try {
+        messaging = getMessaging(app);
+    } catch (err) {
+        console.error("Failed to initialize messaging:", err);
+    }
+}
+export { messaging };

@@ -2,7 +2,32 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // ... (existing rules for products, users, orders, etc.)
+    // Users: Can read and write their own profile.
+    match /users/{userId} {
+      allow read, write: if request.auth.uid == userId;
+    }
+
+    // Products: Public can read published products. Owner can read/write their own products.
+    match /products/{productId} {
+      allow read: if resource.data.isPublished == true || request.auth.uid == resource.data.ownerId;
+      allow create, update: if request.auth.uid == request.resource.data.ownerId;
+      allow delete: if request.auth.uid == resource.data.ownerId;
+    }
+
+    // Orders: Only participants (buyer or seller) can access.
+    match /orders/{orderId} {
+      allow read, write: if request.auth.uid == resource.data.buyerId || request.auth.uid == resource.data.sellerId;
+    }
+
+    // Seller Payment Methods: Only the owner can manage.
+    match /sellerPaymentMethods/{methodId} {
+        allow read, write: if request.auth.uid == resource.data.sellerId;
+    }
+
+    // Ad Actions: Allow any authenticated user to read.
+    match /adActions/{actionId} {
+      allow read: if request.auth != null;
+    }
 
     // Conversations: Only participants can read or write.
     match /conversations/{conversationId} {
@@ -10,7 +35,6 @@ service cloud.firestore {
     }
 
     // Chats: Only participants can read or create messages.
-    // No updates or deletes to preserve chat history.
     match /chats/{chatId} {
         allow read, create: if request.auth.uid == request.resource.data.senderId || request.auth.uid == request.resource.data.receiverId;
         allow update, delete: if false;

@@ -1,13 +1,13 @@
-'''use client';
+'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { db, auth, functions } from '../../firebase';
+import { db, auth, functions } from '../firebase';
 import { collection, query, getDocs, doc, getDoc, orderBy } from 'firebase/firestore';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { httpsCallable } from 'firebase/functions';
 import { toast } from 'react-toastify';
 import {
-    Box, Chip, Button, Drawer, List, ListItem, ListItemText, IconButton, Typography, Divider
+    Box, Chip, Button, Drawer, List, ListItem, ListItemText, IconButton, Typography, Divider, Paper
 } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';

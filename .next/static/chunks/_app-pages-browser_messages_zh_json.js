@@ -1,0 +1,22 @@
+"use strict";
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+(self["webpackChunk_N_E"] = self["webpackChunk_N_E"] || []).push([["_app-pages-browser_messages_zh_json"],{
+
+/***/ "(app-pages-browser)/./messages/zh.json":
+/*!**************************!*\
+  !*** ./messages/zh.json ***!
+  \**************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+module.exports = /*#__PURE__*/JSON.parse('{"LandingPage":{"title":"您的下一个超值优惠就在这里。","subtitle":"一个买卖新品和二手珍品的市场，语言不再是障碍。","browseButton":"立即浏览所有商品！","howItWorksTitle":"运作方式","step1Title":"轻松发布","step1Text":"拍张照片，添加细节，设定价格。您的商品几分钟内即可出售。","step2Title":"即时连接","step2Text":"我们的自动翻译系统让您可以与任何人聊天，无论使用何种语言。","step3Title":"完成交易","step3Text":"商定价格并见面。按您的方式付款，无忧无虑。","aiFeatureTitle":"向任何人出售，无论他们说什么语言。","aiFeatureText":"我们由人工智能驱动的翻译系统无缝地适用于列表、描述和聊天，为泰国多样化的外籍人士社区打开了市场。","popularCategoriesTitle":"热门分类","ctaTitle":"准备好发现您的下一个超值优惠了吗？","ctaSubtitle":"加入泰国最友好的市场，与成千上万的买家和卖家一起。"},"Categories":{"electronics":"电子产品","fashion":"时尚","hobbies":"爱好与收藏","home":"家居与园艺","kids":"母婴用品","otop":"一村一品与本地商品"},"Footer":{"tagline":"一个让所有人畅所欲言的地方","copyright":"© {year} DealDee. 版权所有。","about":"关于","aboutUs":"关于我们","howToUse":"使用指南","faq":"常见问题","contactUs":"联系我们","legal":"法律信息","terms":"服务条款","privacy":"隐私政策","followUs":"关注我们"},"Header":{"signUp":"注册","signIn":"登录","profile":"个人资料","logout":"登出"},"Login":{"welcome":"欢迎来到 DealDee","subtitle":"加入我们的社区，开始跨越语言障碍进行买卖。","googleButton":"使用 Google 继续","facebookButton":"使用 Facebook 继续","orDivider":"或","emailLabel":"电子邮件","passwordLabel":"密码","togglePasswordVisibility":"切换密码可见性","forgotPassword":"忘记密码？","loginButton":"登录","signupLink":"没有帐户？ 注册","termsPrefix":"继续即表示您同意我们的","termsOfService":"服务条款","termsAnd":"和","privacyPolicy":"隐私政策","termsSuffix":"。"},"SignUp":{"title":"创建您的帐户","submitButton":"注册","loginLink":"已有帐户？ 登录"},"Toast":{"signingIn":"正在登录...","signInSuccess":"登录成功！","errorPrefix":"错误","creatingAccount":"正在创建帐户...","createSuccess":"帐户创建成功！","sendingResetEmail":"正在发送重设邮件...","resetEmailSent":"密码重设邮件已发送！请检查您的收件箱。"},"ForgotPassword":{"title":"忘记密码？","instructions":"没问题。请输入您帐户关联的电子邮件地址，我们将向您发送一个重设密码的链接。","submitButton":"发送重设邮件","backToLogin":"返回登录"}}');
+
+/***/ })
+
+}]);

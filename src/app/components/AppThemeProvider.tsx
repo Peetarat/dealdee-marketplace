@@ -1,4 +1,4 @@
-'''use client';
+'use client';
 
 import React, { createContext, useState, useMemo, useContext } from 'react';
 import { ThemeProvider as MuiThemeProvider, CssBaseline } from '@mui/material';
@@ -35,4 +35,3 @@ export default function AppThemeProvider({ children }: { children: React.ReactNo
 }
 
 export const useAppTheme = () => useContext(ThemeContext);
-'''
