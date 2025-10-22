@@ -1,3 +1,4 @@
+// Cache-busting comment to force re-read
 import { onDocumentWritten } from "firebase-functions/v2/firestore";
 import { onCall, HttpsError } from "firebase-functions/v2/https";
 import * as admin from "firebase-admin";
@@ -14,7 +15,6 @@ admin.initializeApp();
 
 export const onProductWritten = onDocumentWritten({
     document: "products/{productId}",
-    secrets: ["SECRET_ALGOLIA_ID", "SECRET_ALGOLIA_ADMIN_KEY"],
 }, async (event) => {
     const ALGOLIA_ID = algoliaId.value();
     const ALGOLIA_ADMIN_KEY = algoliaAdminKey.value();
@@ -34,7 +34,7 @@ export const onProductWritten = onDocumentWritten({
 
 // --- Callable Functions ---
 
-export const createProduct = onCall({region: "us-central1"}, async (request) => {
+export const createProduct = onCall({region: "asia-southeast1"}, async (request) => {
     if (!request.auth) throw new HttpsError('unauthenticated', 'You must be logged in.');
     const { name, description, price, stock, category } = request.data;
     if (!name || !description || !category || typeof price !== 'number' || typeof stock !== 'number') {
@@ -51,7 +51,34 @@ export const createProduct = onCall({region: "us-central1"}, async (request) => 
     return { success: true, productId: productRef.id };
 });
 
-export const addPaymentMethod = onCall({region: "us-central1"}, async (request) => {
+export const admin_addCategory = onCall({region: "asia-southeast1"}, async (request) => {
+    if (!request.auth) throw new HttpsError('unauthenticated', 'You must be logged in.');
+
+    // Admin check
+    const userDoc = await admin.firestore().collection('users').doc(request.auth.uid).get();
+    if (!userDoc.exists || !userDoc.data()?.isAdmin) {
+        throw new HttpsError('permission-denied', 'You must be an admin to perform this action.');
+    }
+
+    const categoryData = {
+        id: 'other',
+        icon: 'MoreHorizIcon',
+        names: {
+            en: 'Other',
+            th: 'อื่นๆ',
+            ja: 'その他',
+            ko: '기타',
+            zh: '其他',
+            hi: 'अन्य'
+        }
+    };
+
+    await admin.firestore().collection('categories').doc('other').set(categoryData);
+
+    return { success: true, message: "'Other' category created successfully." };
+});
+
+export const addPaymentMethod = onCall({region: "asia-southeast1"}, async (request) => {
     if (!request.auth) throw new HttpsError('unauthenticated', 'You must be logged in.');
     const { type, ...details } = request.data;
     const paymentMethodData = {
@@ -70,7 +97,7 @@ export const addPaymentMethod = onCall({region: "us-central1"}, async (request) 
     return { success: true };
 });
 
-export const deletePaymentMethod = onCall({region: "us-central1"}, async (request) => {
+export const deletePaymentMethod = onCall({region: "asia-southeast1"}, async (request) => {
     if (!request.auth) throw new HttpsError('unauthenticated', 'You must be logged in.');
     const { methodId } = request.data;
     const methodRef = admin.firestore().collection('sellerPaymentMethods').doc(methodId);
@@ -89,7 +116,7 @@ export const deletePaymentMethod = onCall({region: "us-central1"}, async (reques
     return { success: true };
 });
 
-export const setPrimaryMethod = onCall({region: "us-central1"}, async (request) => {
+export const setPrimaryMethod = onCall({region: "asia-southeast1"}, async (request) => {
     if (!request.auth) throw new HttpsError('unauthenticated', 'You must be logged in.');
     const { methodId } = request.data;
     const methodsRef = admin.firestore().collection('sellerPaymentMethods');
@@ -106,7 +133,7 @@ export const setPrimaryMethod = onCall({region: "us-central1"}, async (request) 
     });
 });
 
-export const createOrder = onCall({region: "us-central1"}, async (request) => {
+export const createOrder = onCall({region: "asia-southeast1"}, async (request) => {
     if (!request.auth) throw new HttpsError('unauthenticated', 'You must be logged in.');
     const { productId } = request.data;
     const buyerId = request.auth!.uid;
@@ -134,7 +161,7 @@ export const createOrder = onCall({region: "us-central1"}, async (request) => {
     return { success: true, orderId: orderRef.id };
 });
 
-export const confirmSlipUpload = onCall({region: "us-central1"}, async (request) => {
+export const confirmSlipUpload = onCall({region: "asia-southeast1"}, async (request) => {
     if (!request.auth) throw new HttpsError('unauthenticated', 'You must be logged in.');
     const { orderId, slipImageUrl } = request.data;
     const orderRef = admin.firestore().collection('orders').doc(orderId);
@@ -149,7 +176,7 @@ export const confirmSlipUpload = onCall({region: "us-central1"}, async (request)
     return { success: true };
 });
 
-export const confirmOrder = onCall({region: "us-central1"}, async (request) => {
+export const confirmOrder = onCall({region: "asia-southeast1"}, async (request) => {
     if (!request.auth) throw new HttpsError('unauthenticated', 'You must be logged in.');
     const { orderId } = request.data;
     const orderRef = admin.firestore().collection('orders').doc(orderId);
@@ -164,7 +191,7 @@ export const confirmOrder = onCall({region: "us-central1"}, async (request) => {
     return { success: true };
 });
 
-export const cancelOrder = onCall({region: "us-central1"}, async (request) => {
+export const cancelOrder = onCall({region: "asia-southeast1"}, async (request) => {
     if (!request.auth) throw new HttpsError('unauthenticated', 'You must be logged in.');
     const { orderId } = request.data;
     const orderRef = admin.firestore().collection('orders').doc(orderId);
@@ -181,7 +208,7 @@ export const cancelOrder = onCall({region: "us-central1"}, async (request) => {
     return { success: true };
 });
 
-export const addTrackingInfo = onCall({region: "us-central1"}, async (request) => {
+export const addTrackingInfo = onCall({region: "asia-southeast1"}, async (request) => {
     if (!request.auth) throw new HttpsError('unauthenticated', 'You must be logged in.');
     const { orderId, trackingNumber } = request.data;
     const orderRef = admin.firestore().collection('orders').doc(orderId);
@@ -196,7 +223,7 @@ export const addTrackingInfo = onCall({region: "us-central1"}, async (request) =
     return { success: true };
 });
 
-export const editTrackingInfo = onCall({region: "us-central1"}, async (request) => {
+export const editTrackingInfo = onCall({region: "asia-southeast1"}, async (request) => {
     if (!request.auth) throw new HttpsError('unauthenticated', 'You must be logged in.');
     const { orderId, trackingNumber } = request.data;
     const orderRef = admin.firestore().collection('orders').doc(orderId);
@@ -211,7 +238,7 @@ export const editTrackingInfo = onCall({region: "us-central1"}, async (request) 
     return { success: true };
 });
 
-export const markForPickup = onCall({region: "us-central1"}, async (request) => {
+export const markForPickup = onCall({region: "asia-southeast1"}, async (request) => {
     if (!request.auth) throw new HttpsError('unauthenticated', 'You must be logged in.');
     const { orderId } = request.data;
     const orderRef = admin.firestore().collection('orders').doc(orderId);
@@ -226,7 +253,7 @@ export const markForPickup = onCall({region: "us-central1"}, async (request) => 
     return { success: true };
 });
 
-export const completeOrder = onCall({region: "us-central1"}, async (request) => {
+export const completeOrder = onCall({region: "asia-southeast1"}, async (request) => {
     if (!request.auth) throw new HttpsError('unauthenticated', 'You must be logged in.');
     const { orderId } = request.data;
     const orderRef = admin.firestore().collection('orders').doc(orderId);
@@ -246,7 +273,7 @@ export const completeOrder = onCall({region: "us-central1"}, async (request) => 
     });
 });
 
-export const archiveOrder = onCall({region: "us-central1"}, async (request) => {
+export const archiveOrder = onCall({region: "asia-southeast1"}, async (request) => {
     if (!request.auth) throw new HttpsError('unauthenticated', 'You must be logged in.');
     const { orderId } = request.data;
     const orderRef = admin.firestore().collection('orders').doc(orderId);
@@ -266,7 +293,7 @@ export const archiveOrder = onCall({region: "us-central1"}, async (request) => {
     return { success: true };
 });
 
-export const admin_listUsers = onCall({region: "us-central1"}, async (request) => {
+export const admin_listUsers = onCall({region: "asia-southeast1"}, async (request) => {
     try {
         const listUsersResult = await admin.auth().listUsers(1000);
         const db = admin.firestore();
@@ -290,8 +317,7 @@ export const admin_listUsers = onCall({region: "us-central1"}, async (request) =
 });
 
 export const admin_manualSync = onCall({
-    region: "us-central1",
-    secrets: ["SECRET_ALGOLIA_ID", "SECRET_ALGOLIA_ADMIN_KEY"],
+    region: "asia-southeast1",
 }, async () => {
     try {
         logger.info("Starting manual sync to Algolia...");

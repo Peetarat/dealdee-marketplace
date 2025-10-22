@@ -28,7 +28,7 @@ export default function LoginPage() {
         try {
             await signInWithEmailAndPassword(auth, email, password);
             toast.update(toastId, { render: t('Toast.signInSuccess'), type: "success", isLoading: false, autoClose: 3000 });
-            router.push('/products'); // Redirect to products after login
+            router.push('/products/latest'); // Redirect to products after login
         } catch (error: any) {
             toast.update(toastId, { render: `${t('Toast.errorPrefix')}: ${error.message}`, type: "error", isLoading: false, autoClose: 5000 });
         } finally {

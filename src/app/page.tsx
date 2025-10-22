@@ -2,7 +2,7 @@
 import React from 'react';
 import { useLanguage } from './components/LanguageProvider';
 import { useRouter } from 'next/navigation';
-import { Box, Button, Container, Grid, Typography, Paper, Avatar, Link, IconButton, Divider } from '@mui/material';
+import { Box, Button, Container, Grid, Typography, Paper, Avatar, Link, IconButton, Divider, useTheme, useMediaQuery } from '@mui/material';
 import Image from 'next/image';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -24,12 +24,19 @@ import DemoChat from './components/DemoChat';
 export default function LandingPage() {
   const { t } = useLanguage();
   const router = useRouter();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const imageUrls = {
-    iphone: "https://firebasestorage.googleapis.com/v0/b/studio-4973053271-10a9d.firebasestorage.app/o/Main%201.png?alt=media&token=2ca61cb1-ba61-4a1c-9ded-71c7403b5797",
-    dress: "https://firebasestorage.googleapis.com/v0/b/studio-4973053271-10a9d.firebasestorage.app/o/Main%202.png?alt=media&token=f664eb6c-e2f1-491f-ad43-cfd70283fe5d",
-    bag: "https://firebasestorage.googleapis.com/v0/b/studio-4973053271-10a9d.firebasestorage.app/o/Main%203.png?alt=media&token=e58ff28f-965f-445f-837e-27c504dc921c",
-    car: "https://firebasestorage.googleapis.com/v0/b/studio-4973053271-10a9d.firebasestorage.app/o/Main%204.png?alt=media&token=48b381a2-9d24-4c4f-81bf-e3ffd9ec6937"
+    main1: "https://firebasestorage.googleapis.com/v0/b/dealdee-bf882.firebasestorage.app/o/Main%201.png?alt=media&token=dff032a5-5d74-41c9-91af-7232e178ccb1",
+    main2: "https://firebasestorage.googleapis.com/v0/b/dealdee-bf882.firebasestorage.app/o/Main%202.png?alt=media&token=9f0dd0f7-ee49-46ac-a466-25bf374a8db4",
+    main3: "https://firebasestorage.googleapis.com/v0/b/dealdee-bf882.firebasestorage.app/o/Main%203.png?alt=media&token=d649d53e-11f6-4137-b3bc-8a38920e61a7",
+    main4: "https://firebasestorage.googleapis.com/v0/b/dealdee-bf882.firebasestorage.app/o/Main%204.png?alt=media&token=0ae6c3f3-7347-4561-b3d2-94c0f0e209e7"
+  };
+
+  const chatImageUrls = {
+      man: "https://firebasestorage.googleapis.com/v0/b/dealdee-bf882.firebasestorage.app/o/Man%20Chat%20Demo.png?alt=media&token=6c94cfe7-968e-4b50-8cc7-2e5efed78197",
+      woman: "https://firebasestorage.googleapis.com/v0/b/dealdee-bf882.firebasestorage.app/o/Women%20Chat%20Demo.png?alt=media&token=8e881094-c1ad-4b6d-b083-81c7b34f9c0b"
   };
 
   return (
@@ -37,7 +44,7 @@ export default function LandingPage() {
       {/* Hero Section */}
       <Container maxWidth="lg" sx={{ mb: 6 }}>
         <Grid container spacing={5} alignItems="center">
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={6} sx={{ textAlign: { xs: 'center', md: 'left' } }}>
             <Typography variant="h2" component="h1" fontWeight="bold" gutterBottom sx={{ lineHeight: 1.2, letterSpacing: '-0.5px' }}>
               {t('LandingPage.title')}
             </Typography>
@@ -47,7 +54,7 @@ export default function LandingPage() {
             <Button 
                 variant="contained" 
                 size="large" 
-                onClick={() => router.push('/products')}
+                onClick={() => router.push('/products/latest')}
                 sx={{
                     borderRadius: '20px', 
                     px: 4, 
@@ -85,14 +92,18 @@ export default function LandingPage() {
             </Button>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Paper elevation={6} sx={{ borderRadius: '24px', overflow: 'hidden', p: 1 }}>
-                <Grid container spacing={0.5}>
-                    <Grid item xs={12} sm={6}><Image src={imageUrls.iphone} alt="iPhone" width={500} height={500} style={{width: '100%', height: 'auto', borderRadius: '16px'}} /></Grid>
-                    <Grid item xs={12} sm={6}><Image src={imageUrls.dress} alt="Dress" width={500} height={500} style={{width: '100%', height: 'auto', borderRadius: '16px'}} /></Grid>
-                    <Grid item xs={12} sm={6}><Image src={imageUrls.bag} alt="Bag" width={500} height={500} style={{width: '100%', height: 'auto', borderRadius: '16px'}} /></Grid>
-                    <Grid item xs={12} sm={6}><Image src={imageUrls.car} alt="Car" width={500} height={500} style={{width: '100%', height: 'auto', borderRadius: '16px'}} /></Grid>
-                </Grid>
-            </Paper>
+            {isMobile ? (
+                <Image src={imageUrls.main1} alt="DealDee Products" width={500} height={500} style={{width: '100%', height: 'auto', borderRadius: '16px'}} />
+            ) : (
+                <Paper elevation={6} sx={{ borderRadius: '24px', overflow: 'hidden' }}>
+                    <Grid container>
+                        <Grid item xs={12} sm={6} p={0.5}><Image src={imageUrls.main1} alt="iPhone" width={500} height={500} style={{width: '100%', height: 'auto', borderRadius: '16px', display: 'block'}} /></Grid>
+                        <Grid item xs={12} sm={6} p={0.5}><Image src={imageUrls.main2} alt="Dress" width={500} height={500} style={{width: '100%', height: 'auto', borderRadius: '16px', display: 'block'}} /></Grid>
+                        <Grid item xs={12} sm={6} p={0.5}><Image src={imageUrls.main3} alt="Bag" width={500} height={500} style={{width: '100%', height: 'auto', borderRadius: '16px', display: 'block'}} /></Grid>
+                        <Grid item xs={12} sm={6} p={0.5}><Image src={imageUrls.main4} alt="Car" width={500} height={500} style={{width: '100%', height: 'auto', borderRadius: '16px', display: 'block'}} /></Grid>
+                    </Grid>
+                </Paper>
+            )}
           </Grid>
         </Grid>
       </Container>
@@ -132,7 +143,7 @@ export default function LandingPage() {
       {/* AI Translation / Demo Chat Section */}
       <Container maxWidth="lg" sx={{ py: 4 }}>
         <Grid container spacing={5} alignItems="center">
-            <Grid item xs={12} md={6}><DemoChat /></Grid>
+            <Grid item xs={12} md={6}><DemoChat manImageUrl={chatImageUrls.man} womanImageUrl={chatImageUrls.woman} /></Grid>
             <Grid item xs={12} md={6}>
                 <Box sx={{ display: 'flex', alignItems: 'center', color: '#FFC107' }}>
                     <AutoAwesomeIcon sx={{ fontSize: '1.2rem', mr: 0.5 }} />

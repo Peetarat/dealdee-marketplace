@@ -45,5 +45,11 @@ service cloud.firestore {
         allow read: if true; // Publicly readable
         allow create, update, delete: if request.auth.uid == resource.data.ownerId;
     }
+
+    // Categories: Publicly readable, only admins can write (in the future).
+    match /categories/{categoryId} {
+      allow read: if true;
+      allow write: if false; // Protect against client-side writes
+    }
   }
 }

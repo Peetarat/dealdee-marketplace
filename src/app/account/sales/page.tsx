@@ -7,8 +7,9 @@ import { httpsCallable } from 'firebase/functions';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { 
     Container, Box, Paper, Typography, Button, CircularProgress, List, ListItem, 
-    ListItemText, IconButton, Dialog, DialogTitle, DialogContent, Chip, Link as MuiLink 
+    ListItemText, IconButton, Dialog, DialogTitle, DialogContent, Chip, Link as MuiLink, DialogActions, TextField 
 } from '@mui/material';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import ArchiveIcon from '@mui/icons-material/Archive';

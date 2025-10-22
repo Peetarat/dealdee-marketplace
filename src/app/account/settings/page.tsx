@@ -1,17 +1,14 @@
 'use client';
 
-import React from 'react';
+import { useLanguage } from '@/app/components/LanguageProvider';
 import { Typography, Box } from '@mui/material';
 
-export default function ProfileSettingsPage() {
-    return (
-        <Box>
-            <Typography variant="h4" component="h1" gutterBottom>
-                Profile Settings
-            </Typography>
-            <Typography color="text.secondary">
-                This page is under construction. You will be able to edit your profile information here.
-            </Typography>
-        </Box>
-    );
+export default function Page() {
+  const { t } = useLanguage();
+
+  return (
+    <Box sx={{ p: 3 }}>
+      <Typography variant="h4">{t('Common.pageUnderConstruction')}</Typography>
+    </Box>
+  );
 }

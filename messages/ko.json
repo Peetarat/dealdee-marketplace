@@ -22,7 +22,8 @@
     "hobbies": "취미 및 수집품",
     "home": "홈 & 가든",
     "kids": "엄마 & 키즈",
-    "otop": "OTOP 및 현지 상품"
+    "otop": "OTOP 및 현지 상품",
+    "more": "더보기"
   },
   "Footer": {
     "tagline": "모두가 같은 언어를 사용하는 곳",
@@ -40,8 +41,46 @@
   "Header": {
     "signUp": "가입하기",
     "signIn": "로그인",
-    "profile": "프로필",
-    "logout": "로그아웃"
+    "menu": {
+      "profile": "프로필",
+      "sell": "판매하기",
+      "myListings": "내 판매 목록",
+      "myOrders": "주문 내역",
+      "myCart": "장바구니",
+      "favorites": "즐겨찾기",
+      "messages": "메시지",
+      "notifications": "알림",
+      "settings": "설정",
+      "helpAndSupport": "도움말 및 지원",
+      "admin": "관리자",
+      "signOut": "로그아웃"
+    }
+  },
+  "Drawer": {
+    "language": "언어",
+    "theme": "테마"
+  },
+  "Common": {
+    "pageUnderConstruction": "This page is under construction.",
+    "currency": "THB"
+  },
+  "Cart": {
+    "title": "My Cart",
+    "emptyTitle": "Your cart is empty",
+    "emptySubtitle": "Looks like you haven't added anything to your cart yet. Let's find something great!",
+    "browseProducts": "Browse Products",
+    "summaryTitle": "Order Summary",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "total": "Total",
+    "checkoutButton": "Proceed to Checkout",
+    "continueShopping": "or Continue Shopping"
+  },
+  "Products": {
+    "promotedItems": "프로모션 상품",
+    "viewAllPromoted": "모든 프로모션 상품 보기",
+    "allLatestItems": "모든 최신 상품",
+    "viewAll": "모두 보기"
   },
   "Login": {
     "welcome": "DealDee에 오신 것을 환영합니다",

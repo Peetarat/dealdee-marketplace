@@ -5,6 +5,7 @@ import { ThemeProvider as MuiThemeProvider, CssBaseline } from '@mui/material';
 import { getAppTheme } from '../theme';
 
 interface IThemeContext {
+  mode: 'light' | 'dark';
   toggleColorMode: () => void;
 }
 
@@ -15,11 +16,12 @@ export default function AppThemeProvider({ children }: { children: React.ReactNo
 
   const colorMode = useMemo(
     () => ({
+      mode,
       toggleColorMode: () => {
         setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
       },
     }),
-    [],
+    [mode],
   );
 
   const theme = useMemo(() => getAppTheme(mode), [mode]);

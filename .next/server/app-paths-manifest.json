@@ -1,7 +1,7 @@
 {
   "/page": "app/page.js",
-  "/account/products/page": "app/account/products/page.js",
-  "/admin/page": "app/admin/page.js",
-  "/account/settings/page": "app/account/settings/page.js",
-  "/account/settings/payment/page": "app/account/settings/payment/page.js"
+  "/chat/page": "app/chat/page.js",
+  "/account/profile/page": "app/account/profile/page.js",
+  "/products/latest/page": "app/products/latest/page.js",
+  "/account/products/add/page": "app/account/products/add/page.js"
 }

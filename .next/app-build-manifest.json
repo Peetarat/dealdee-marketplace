@@ -11,30 +11,45 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
+    "/products/latest/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/products/latest/page.js"
+    ],
+    "/login/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/login/page.js"
+    ],
+    "/products/[productId]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/products/[productId]/page.js"
+    ],
     "/account/products/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/account/products/page.js"
     ],
-    "/admin/page": [
+    "/account/orders/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/admin/page.js"
+      "static/chunks/app/account/orders/page.js"
     ],
-    "/account/settings/page": [
+    "/chat/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/account/settings/page.js"
+      "static/chunks/app/chat/page.js"
     ],
-    "/account/settings/layout": [
+    "/account/profile/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/account/settings/layout.js"
+      "static/chunks/app/account/profile/page.js"
     ],
-    "/account/settings/payment/page": [
+    "/account/products/add/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/account/settings/payment/page.js"
+      "static/chunks/app/account/products/add/page.js"
     ]
   }
 }

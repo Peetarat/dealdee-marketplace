@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -H 0.0.0.0",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -11,13 +11,16 @@
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@fontsource/prompt": "^5.2.8",
     "@mui/icons-material": "^5.15.18",
     "@mui/material": "^5.15.18",
     "algoliasearch": "^4.23.3",
     "firebase": "^10.12.2",
-    "next": "14.2.3",
+    "firebase-admin": "^13.5.0",
+    "next": "^14.2.33",
     "react": "^18",
     "react-dom": "^18",
+    "react-dropzone": "^14.3.8",
     "react-firebase-hooks": "^5.1.1",
     "react-instantsearch-hooks-web": "^6.47.3",
     "react-toastify": "^10.0.5",
@@ -27,8 +30,10 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-dropzone": "^4.2.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }

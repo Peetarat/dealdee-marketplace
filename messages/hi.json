@@ -22,7 +22,8 @@
     "hobbies": "शौक और संग्रहणीय वस्तुएं",
     "home": "घर और बगीचा",
     "kids": "माँ और बच्चे",
-    "otop": "ओटॉप और स्थानीय सामान"
+    "otop": "ओटॉप और स्थानीय सामान",
+    "more": " और"
   },
   "Footer": {
     "tagline": "जहां हर कोई एक ही भाषा बोलता है",
@@ -40,8 +41,42 @@
   "Header": {
     "signUp": "साइन अप करें",
     "signIn": "साइन इन करें",
-    "profile": "प्रोफ़ाइल",
-    "logout": "लॉग आउट"
+    "menu": {
+      "profile": "प्रोफ़ाइल",
+      "sell": "बेचें",
+      "myListings": "मेरी लिस्टिंग",
+      "myOrders": "मेरे आदेश",
+      "myCart": "मेरी गाड़ी",
+      "favorites": "पसंदीदा",
+      "messages": "संदेश",
+      "notifications": "सूचनाएं",
+      "settings": "सेटिंग्स",
+      "helpAndSupport": "सहायता और समर्थन",
+      "admin": "एडमिन",
+      "signOut": "साइन आउट"
+    }
+  },
+  "Drawer": {
+    "language": "भाषा",
+    "theme": "थीम"
+  },
+  "Cart": {
+    "title": "मेरी गाड़ी",
+    "emptyTitle": "आपकी गाड़ी खाली है",
+    "emptySubtitle": "लगता है आपने अभी तक अपनी गाड़ी में कुछ भी नहीं जोड़ा है। चलिए कुछ बढ़िया ढूंढते हैं!",
+    "browseProducts": "उत्पाद ब्राउज़ करें",
+    "summaryTitle": "आदेश सारांश",
+    "subtotal": "उप-योग",
+    "shipping": "शिपिंग",
+    "total": "कुल",
+    "checkoutButton": "चेकआउट के लिए आगे बढ़ें",
+    "continueShopping": "या खरीदारी जारी रखें"
+  },
+  "Products": {
+    "promotedItems": "प्रचारित आइटम",
+    "viewAllPromoted": "सभी प्रचारित आइटम देखें",
+    "allLatestItems": "All Latest Items",
+    "viewAll": "सभी देखें"
   },
   "Login": {
     "welcome": "DealDee में आपका स्वागत है",
@@ -49,7 +84,7 @@
     "googleButton": "Google के साथ जारी रखें",
     "facebookButton": "Facebook के साथ जारी रखें",
     "orDivider": "या",
-    "emailLabel": "ईमेल",
+    "emailLabel": "ईเมล",
     "passwordLabel": "पासवर्ड",
     "togglePasswordVisibility": "पासवर्ड दृश्यता टॉगल करें",
     "forgotPassword": "पासवर्ड भूल गए?",

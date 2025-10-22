@@ -4,10 +4,8 @@ import { Box, Paper, Avatar, Typography } from '@mui/material';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import { useLanguage } from './LanguageProvider';
 
-const DemoChat = () => {
+const DemoChat = ({ manImageUrl, womanImageUrl }: { manImageUrl: string, womanImageUrl: string }) => {
     const { locale } = useLanguage();
-    const manAvatar = "https://firebasestorage.googleapis.com/v0/b/studio-4973053271-10a9d.firebasestorage.app/o/Man%20Chat%20Demo.png?alt=media&token=3b6c65a1-a85b-456a-9ac1-93ae161dbb57";
-    const womanAvatar = "https://firebasestorage.googleapis.com/v0/b/studio-4973053271-10a9d.firebasestorage.app/o/Women%20Chat%20Demo.png?alt=media&token=fded98fb-e4d2-4920-8e16-338102000ef5";
 
     const sentences: { [key: string]: { [key: string]: string } } = {
         q1: { en: 'Is this item still available?', th: 'สินค้านี้ยังมีอยู่ไหมครับ?', zh: '这个还有吗？', ja: 'この商品はまだありますか？', ko: '이 상품 아직 있나요?', hi: 'क्या यह आइटम अभी भी उपलब्ध है?' },
@@ -39,25 +37,25 @@ const DemoChat = () => {
             <MessageBubble 
                 text={sentences.q1[safeLocale]}
                 translation={sentences.q1['en']}
-                avatar={manAvatar}
+                avatar={manImageUrl}
                 isMe={false}
             />
             <MessageBubble 
                 text={sentences.a1['en']}
                 translation={sentences.a1[safeLocale]}
-                avatar={womanAvatar}
+                avatar={womanImageUrl}
                 isMe={true}
             />
             <MessageBubble 
                 text={sentences.q2[safeLocale]}
                 translation={sentences.q2['en']}
-                avatar={manAvatar}
+                avatar={manImageUrl}
                 isMe={false}
             />
             <MessageBubble 
                 text={sentences.a2['en']}
                 translation={sentences.a2[safeLocale]}
-                avatar={womanAvatar}
+                avatar={womanImageUrl}
                 isMe={true}
             />
         </Paper>

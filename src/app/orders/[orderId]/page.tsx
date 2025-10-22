@@ -15,7 +15,7 @@ const completeOrder = httpsCallable(functions, 'completeOrder');
 
 interface Order {
     id: string;
-    status: 'pending_payment' | 'pending_confirmation' | 'confirmed' | 'shipped' | 'awaiting_pickup' | 'cancelled';
+    status: 'pending_payment' | 'pending_confirmation' | 'confirmed' | 'shipped' | 'awaiting_pickup' | 'completed' | 'cancelled';
     productDetails: { name: string; price: number; imageUrls: string[] };
     totalPrice: number;
     paymentDetails: any;
@@ -154,7 +154,7 @@ export default function OrderDetailPage() {
                 )}
 
                 {order.status === 'pending_confirmation' && <Alert severity="success">Slip uploaded. Waiting for seller confirmation.</Alert>}
-                {order.status === 'confirmed' && <Alert severity="primary">Payment confirmed. Awaiting shipment.</Alert>}
+                {order.status === 'confirmed' && <Alert severity="info">Payment confirmed. Awaiting shipment.</Alert>}
                 {order.status === 'awaiting_pickup' && <Alert severity="info">Ready for pickup. Please coordinate with the seller.</Alert>}
                 {order.status === 'shipped' && <Alert severity="success">Your order has been shipped!</Alert>}
                 {order.status === 'completed' && <Alert severity="success" icon={<CheckCircleIcon />}>This order is complete. Thank you!</Alert>}

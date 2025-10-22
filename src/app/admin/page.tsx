@@ -1,11 +1,14 @@
 'use client';
-import React from 'react';
 
-export default function AdminPage() {
+import { useLanguage } from '@/app/components/LanguageProvider';
+import { Typography, Box } from '@mui/material';
+
+export default function Page() {
+  const { t } = useLanguage();
+
   return (
-    <div style={{ padding: '2rem' }}>
-      <h1>Admin Page</h1>
-      <p>This page is under construction.</p>
-    </div>
+    <Box sx={{ p: 3 }}>
+      <Typography variant="h4">{t('Common.pageUnderConstruction')}</Typography>
+    </Box>
   );
 }

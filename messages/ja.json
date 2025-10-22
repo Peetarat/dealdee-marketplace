@@ -22,7 +22,8 @@
     "hobbies": "趣味・コレクション",
     "home": "ホーム＆ガーデン",
     "kids": "ママ＆キッズ",
-    "otop": "OTOP・地元産品"
+    "otop": "OTOP・地元産品",
+    "more": "もっと見る"
   },
   "Footer": {
     "tagline": "誰もが同じ言語を話す場所",
@@ -40,8 +41,46 @@
   "Header": {
     "signUp": "新規登録",
     "signIn": "ログイン",
-    "profile": "プロフィール",
-    "logout": "ログアウト"
+    "menu": {
+      "profile": "プロフィール",
+      "sell": "出品する",
+      "myListings": "出品商品",
+      "myOrders": "注文履歴",
+      "myCart": "カート",
+      "favorites": "お気に入り",
+      "messages": "メッセージ",
+      "notifications": "お知らせ",
+      "settings": "設定",
+      "helpAndSupport": "ヘルプ & サポート",
+      "admin": "管理者",
+      "signOut": "ログアウト"
+    }
+  },
+  "Drawer": {
+    "language": "言語",
+    "theme": "テーマ"
+  },
+  "Common": {
+    "pageUnderConstruction": "このページは作成中です",
+    "currency": "バーツ"
+  },
+  "Cart": {
+    "title": "カート",
+    "emptyTitle": "カートは空です",
+    "emptySubtitle": "まだカートに何も追加されていないようです。何か素敵なものを見つけましょう！",
+    "browseProducts": "商品を見る",
+    "summaryTitle": "注文概要",
+    "subtotal": "小計",
+    "shipping": "送料",
+    "total": "合計",
+    "checkoutButton": "レジに進む",
+    "continueShopping": "または買い物を続ける"
+  },
+  "Products": {
+    "promotedItems": "プロモーション商品",
+    "viewAllPromoted": "すべてのプロモーション商品を見る",
+    "allLatestItems": "All Latest Items",
+    "viewAll": "すべて表示"
   },
   "Login": {
     "welcome": "DealDeeへようこそ",

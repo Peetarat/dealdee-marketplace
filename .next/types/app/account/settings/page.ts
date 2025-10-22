@@ -1,4 +1,4 @@
-// File: /home/peetarat/dealdee-marketplace/src/app/account/settings/page.tsx
+// File: /home/phenixfoodwholesalehub/dealdee-version2/src/app/account/settings/page.tsx
 import * as entry from '../../../../../src/app/account/settings/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

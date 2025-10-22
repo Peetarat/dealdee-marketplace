@@ -22,7 +22,8 @@
     "hobbies": "งานอดิเรกและของสะสม",
     "home": "บ้านและสวน",
     "kids": "แม่และเด็ก",
-    "otop": "OTOP และสินค้าท้องถิ่น"
+    "otop": "OTOP และสินค้าท้องถิ่น",
+    "more": "เพิ่มเติม"
   },
   "Footer": {
     "tagline": "ที่ที่ทุกคนพูดภาษาเดียวกัน",
@@ -40,8 +41,46 @@
   "Header": {
     "signUp": "ลงทะเบียน",
     "signIn": "เข้าสู่ระบบ",
-    "profile": "โปรไฟล์",
-    "logout": "ออกจากระบบ"
+    "menu": {
+      "profile": "โปรไฟล์",
+      "sell": "ลงขาย",
+      "myListings": "รายการของฉัน",
+      "myOrders": "รายการสั่งซื้อ",
+      "myCart": "ตะกร้าของฉัน",
+      "favorites": "รายการโปรด",
+      "messages": "ข้อความ",
+      "notifications": "การแจ้งเตือน",
+      "settings": "ตั้งค่า",
+      "helpAndSupport": "ช่วยเหลือ",
+      "admin": "แอดมิน",
+      "signOut": "ออกจากระบบ"
+    }
+  },
+  "Drawer": {
+    "language": "ภาษา",
+    "theme": "ธีม"
+  },
+  "Common": {
+    "pageUnderConstruction": "หน้านี้อยู่ระหว่างการพัฒนา",
+    "currency": "บาท"
+  },
+  "Cart": {
+    "title": "ตะกร้าของฉัน",
+    "emptyTitle": "ตะกร้าของคุณว่างเปล่า",
+    "emptySubtitle": "ดูเหมือนว่าคุณยังไม่ได้เพิ่มสินค้าลงในตะกร้าเลย ไปหาสินค้าดีๆ กันเถอะ!",
+    "browseProducts": "เลือกดูสินค้า",
+    "summaryTitle": "สรุปคำสั่งซื้อ",
+    "subtotal": "ยอดรวม",
+    "shipping": "ค่าจัดส่ง",
+    "total": "ยอดรวมทั้งสิ้น",
+    "checkoutButton": "ไปที่หน้าชำระเงิน",
+    "continueShopping": "หรือเลือกซื้อสินค้าต่อ"
+  },
+  "Products": {
+    "promotedItems": "สินค้าโปรโมท",
+    "viewAllPromoted": "ดูสินค้าโปรโมททั้งหมด",
+    "allLatestItems": "สินค้าล่าสุดทั้งหมด",
+    "viewAll": "ดูทั้งหมด"
   },
   "Login": {
     "welcome": "ยินดีต้อนรับสู่ DealDee",
