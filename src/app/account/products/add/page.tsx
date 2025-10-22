@@ -52,29 +52,6 @@ export default function AddProductPage() {
     const [coverMedia, setCoverMedia] = useState<FilePreview[]>([]);
     const [additionalMedia, setAdditionalMedia] = useState<FilePreview[]>([]);
 
-    // Temporary function to add the 'other' category
-    const handleCreateOtherCategory = async () => {
-        const categoryData = {
-            id: 'other',
-            icon: 'MoreHorizIcon',
-            names: {
-                en: 'Other',
-                th: 'อื่นๆ',
-                ja: 'その他',
-                ko: '기타',
-                zh: '其他',
-                hi: 'अन्य'
-            }
-        };
-        try {
-            await setDoc(doc(db, "categories", "other"), categoryData);
-            toast.success("'Other' category created successfully! Please refresh.");
-        } catch (e) {
-            toast.error(`Failed to create category: ${e}`);
-            console.error(e);
-        }
-    };
-
     // Fetch and Sort Categories
     useEffect(() => {
         const fetchCategories = async () => {
@@ -270,7 +247,6 @@ export default function AddProductPage() {
             <Typography component="h1" variant="h4" align="center" gutterBottom fontWeight="bold">
                 Add a New Product
             </Typography>
-            <Button variant="contained" color="warning" onClick={handleCreateOtherCategory} sx={{mb: 2}}>Create 'Other' Category (TEMP)</Button>
             <Box component="form" onSubmit={(e) => handleSubmit(e, false)} noValidate sx={{ mt: 3 }}>
                 <Grid container spacing={4}>
                     {/* Media Section */}

@@ -8,12 +8,12 @@ import { getMessaging } from "firebase/messaging";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDjg9UVVYqoYkZlwyU6Q2miDWK-uan-RfM",
-  authDomain: "dealdee-bf882.firebaseapp.com",
-  projectId: "dealdee-bf882",
-  storageBucket: "dealdee-bf882.appspot.com",
-  messagingSenderId: "851678554325",
-  appId: "1:851678554325:web:ab03549c1f1a3717025a5c"
+  apiKey: "AIzaSyDlV3pHMVFYp3YmUMDqwN-WYf_iKDX1fsw",
+  authDomain: "studio-4973053271-10a9d.firebaseapp.com",
+  projectId: "studio-4973053271-10a9d",
+  storageBucket: "studio-4973053271-10a9d.firebasestorage.app",
+  messagingSenderId: "100382390299",
+  appId: "1:100382390299:web:cfd2ffd457b8a0175f60be"
 };
 
 // Initialize Firebase
