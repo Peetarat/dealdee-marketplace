@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "dealdee-bf882"
-  }
+    "default": "dealdee-bf882",
+    "mac": "dealdee-mac"
+  },
+  "targets": {},
+  "etags": {}
 }

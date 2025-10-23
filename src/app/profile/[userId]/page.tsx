@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
-import * as authHooks from 'react-firebase-hooks/auth';
+// Correct import: useAuthState instead of useAuth
+import { useAuthState } from 'react-firebase-hooks/auth'; // <--- CORRECTED IMPORT ACCESS (using direct import)
 import { auth, firestore } from '@/app/firebase';
 import { doc, updateDoc } from 'firebase/firestore';
 import { updateProfile } from 'firebase/auth';
@@ -35,7 +36,8 @@ interface UserProfile {
 
 export default function DynamicProfilePage({ params }: { params: { userId: string } }) {
   const { t } = useLanguage();
-  const [loggedInUser, authLoading] = authHooks.useAuth(auth);
+  // Correct hook usage: useAuthState
+  const [loggedInUser, authLoading] = useAuthState(auth); // <--- CORRECTED HOOK NAME
   const { userId } = params;
 
   const userDocRef = doc(firestore, 'users', userId);
@@ -81,6 +83,7 @@ export default function DynamicProfilePage({ params }: { params: { userId: strin
 
       if (editedPhotoURL && editedPhotoURL !== userProfile?.photoURL) {
         dataToUpdate.photoURL = editedPhotoURL;
+        // Also update Firebase Auth profile if photoURL changes
         await updateProfile(loggedInUser, { photoURL: editedPhotoURL });
       }
 
@@ -123,11 +126,15 @@ export default function DynamicProfilePage({ params }: { params: { userId: strin
   }
 
   if (profileError) {
-    return <Typography color="error">Error: {profileError.message}</Typography>;
+    return <Typography color="error">Error loading profile: {profileError.message}</Typography>;
   }
 
   if (!userProfile) {
-    return <Typography>User not found.</Typography>;
+    // Check if the user exists in Auth but not Firestore (shouldn't happen with our Cloud Function)
+    if (loggedInUser && loggedInUser.uid === userId) {
+        return <Typography color="error">Error: Profile data not found in database. Please contact support.</Typography>;
+    }
+    return <Typography>User profile not found.</Typography>;
   }
 
   const memberSince = userProfile.createdAt
@@ -160,7 +167,8 @@ export default function DynamicProfilePage({ params }: { params: { userId: strin
               <CakeIcon fontSize="small" />
               <Typography variant="body2">{t('profile.member_since')} {memberSince}</Typography>
             </Box>
-            <SocialLinks links={userProfile.socialLinks} />
+            {/* Display existing social links when not editing */}
+            {!isEditing && <SocialLinks links={userProfile.socialLinks} />}
           </Box>
           {isOwner && (
             <Box sx={{ ml: { sm: 'auto' }, mt: { xs: 2, sm: 0 }, display: 'flex', gap: 1 }}>
@@ -191,9 +199,12 @@ export default function DynamicProfilePage({ params }: { params: { userId: strin
             </Box>
             
             <Box>
-              {isEditing && isOwner && (
-                <Button variant="contained" startIcon={<AddPhotoAlternateIcon />} onClick={() => setIsGalleryUploadModalOpen(true)} disabled={editedGalleryImages.length >= 8} sx={{ mb: 2 }}>Add Gallery Image</Button>
-              )}
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+                  <Typography variant="h6">Gallery</Typography>
+                  {isEditing && isOwner && (
+                    <Button variant="contained" size="small" startIcon={<AddPhotoAlternateIcon />} onClick={() => setIsGalleryUploadModalOpen(true)} disabled={editedGalleryImages.length >= 8}>Add Image</Button>
+                  )}
+              </Box>
               <ProfileGallery images={isEditing && isOwner ? editedGalleryImages : userProfile.galleryImages || []} isEditing={isEditing && isOwner} onDelete={handleGalleryDelete} />
             </Box>
           </Grid>
@@ -201,11 +212,13 @@ export default function DynamicProfilePage({ params }: { params: { userId: strin
           <Grid item xs={12} md={4}>
             <Paper variant="outlined" sx={{ p: 3, borderRadius: '12px', mb: 3 }}>
               <Typography variant="h6" gutterBottom>{t('profile.membership_level')}</Typography>
-              <Chip label={userProfile.tier.charAt(0).toUpperCase() + userProfile.tier.slice(1)} color={userProfile.tier === 'standard' ? 'success' : 'default'} variant="filled" sx={{ fontWeight: 'bold' }} />
+              <Chip label={userProfile.tier.charAt(0).toUpperCase() + userProfile.tier.slice(1)} color={userProfile.tier === 'starter' ? 'default' : 'success'} variant="filled" sx={{ fontWeight: 'bold' }} />
+              {/* TODO: Add tier expiry date if exists */}
             </Paper>
             <Paper variant="outlined" sx={{ p: 3, borderRadius: '12px', mb: 3 }}>
               <Typography variant="h6" gutterBottom>{t('profile.credit_balance')}</Typography>
-              <Typography variant="h4" fontWeight="bold" color="primary">{userProfile.credits.toLocaleString()}</Typography>
+              <Typography variant="h4" fontWeight="bold" color="primary">{userProfile.credits?.toLocaleString() ?? 0}</Typography>
+              {/* TODO: Add link to buy credits */}
             </Paper>
 
             {isEditing && isOwner && (
@@ -214,6 +227,7 @@ export default function DynamicProfilePage({ params }: { params: { userId: strin
                 <TextField label="Facebook URL" fullWidth variant="outlined" margin="dense" value={editedSocialLinks.facebook || ''} onChange={(e) => handleSocialLinkChange('facebook', e.target.value)} />
                 <TextField label="Instagram URL" fullWidth variant="outlined" margin="dense" value={editedSocialLinks.instagram || ''} onChange={(e) => handleSocialLinkChange('instagram', e.target.value)} />
                 <TextField label="TikTok URL" fullWidth variant="outlined" margin="dense" value={editedSocialLinks.tiktok || ''} onChange={(e) => handleSocialLinkChange('tiktok', e.target.value)} />
+                {/* Add more social links as needed */}
               </Paper>
             )}
           </Grid>

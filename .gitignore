@@ -74,3 +74,9 @@ node_modules/
 serviceAccountKey.json
 # Next.js build output
 .next/
+
+# Local envs for firebase functions
+api/.env.dealdee-mac
+functions/.env.*
+api/.env
+/.env.dealdee-mac

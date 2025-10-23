@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import AppThemeProvider from "./components/AppThemeProvider";
-import FirebaseMessagingProvider from "./components/FirebaseMessagingProvider";
+import FirebaseMessagingProvider from "./components/FirebaseMessagingProvider"; // Kept commented out as before
 import AppLayout from "./components/AppLayout";
 import { LanguageProvider } from "./components/LanguageProvider"; // Import the new provider
 import { ToastContainer } from 'react-toastify';
@@ -23,14 +23,14 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <AppThemeProvider>
-          <LanguageProvider> {/* Wrap with the new provider */}
+          <LanguageProvider> {/* <-- UNCOMMENTED */}
             {/* <FirebaseMessagingProvider> */}
-              <AppLayout>
+              <AppLayout> {/* <-- UNCOMMENTED */}
                 {children}
-              </AppLayout>
+              </AppLayout> {/* <-- UNCOMMENTED */}
             {/* </FirebaseMessagingProvider> */}
-            <ToastContainer />
-          </LanguageProvider>
+            <ToastContainer /> {/* <-- UNCOMMENTED */}
+          </LanguageProvider> {/* <-- UNCOMMENTED */}
         </AppThemeProvider>
       </body>
     </html>
