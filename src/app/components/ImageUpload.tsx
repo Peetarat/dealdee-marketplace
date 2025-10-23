@@ -1,4 +1,4 @@
-''''use client';
+'use client';
 
 import React, { useState } from 'react';
 import { storage } from '@/app/firebase';
@@ -96,4 +96,3 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onUploadComplete, storagePath
 };
 
 export default ImageUpload;
-''''

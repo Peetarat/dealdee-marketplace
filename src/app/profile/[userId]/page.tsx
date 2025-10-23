@@ -1,13 +1,13 @@
-''''use client';
+'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useAuth } from 'react-firebase-hooks/auth';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
+import * as authHooks from 'react-firebase-hooks/auth';
 import { auth, firestore } from '@/app/firebase';
 import { doc, updateDoc } from 'firebase/firestore';
 import { updateProfile } from 'firebase/auth';
 import { Container, Typography, Paper, Box, CircularProgress, Chip, Button, Divider, Grid, TextField, IconButton, FormControlLabel, Switch, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
-import { useLanguage } from '@/context/LanguageContext';
+import { useLanguage } from '@/app/components/LanguageProvider';
 import TieredAvatar from '@/app/components/TieredAvatar';
 import ImageUpload from '@/app/components/ImageUpload';
 import ProfileGallery from '@/app/components/ProfileGallery';
@@ -35,7 +35,7 @@ interface UserProfile {
 
 export default function DynamicProfilePage({ params }: { params: { userId: string } }) {
   const { t } = useLanguage();
-  const [loggedInUser, authLoading] = useAuth(auth);
+  const [loggedInUser, authLoading] = authHooks.useAuth(auth);
   const { userId } = params;
 
   const userDocRef = doc(firestore, 'users', userId);
@@ -231,4 +231,3 @@ export default function DynamicProfilePage({ params }: { params: { userId: strin
     </Container>
   );
 }
-''''

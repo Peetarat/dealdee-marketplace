@@ -1,4 +1,4 @@
-''''use client';
+'use client';
 
 import React from 'react';
 import { Box, IconButton } from '@mui/material';
@@ -41,4 +41,3 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ links = {} }) => {
 };
 
 export default SocialLinks;
-''''

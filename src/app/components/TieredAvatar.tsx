@@ -1,4 +1,4 @@
-''''use client';
+'use client';
 
 import React from 'react';
 import { Avatar, Badge, Box, styled } from '@mui/material';
@@ -86,4 +86,3 @@ const TieredAvatar: React.FC<TieredAvatarProps> = ({ src, alt, tier, size = 100 
 };
 
 export default TieredAvatar;
-''''

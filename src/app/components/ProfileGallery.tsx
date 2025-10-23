@@ -1,4 +1,4 @@
-''''use client';
+'use client';
 
 import React, { useState } from 'react';
 import { Box, Grid, Paper, IconButton, Typography } from '@mui/material';
@@ -73,4 +73,3 @@ const ProfileGallery: React.FC<ProfileGalleryProps> = ({ images = [], isEditing 
 };
 
 export default ProfileGallery;
-''''

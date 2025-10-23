@@ -71,7 +71,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     const [unreadMsgCount, setUnreadMsgCount] = useState(0);
 
     // --- Navigation Logic ---
-    const backButtonExclusionPaths = ['/', '/products/latest', '/chat', '/notifications', '/account/profile'];
+    const backButtonExclusionPaths = ['/', '/products/latest', '/chat', '/notifications', '/account/my-profile'];
     const showBackButton = isMobile && !backButtonExclusionPaths.includes(pathname);
 
     // State for categories (moved from LatestProductsPage)
@@ -135,6 +135,19 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         }
     }, [isMobile]);
 
+    // Workaround: Redirect from the placeholder page to the correct dynamic profile or login
+    useEffect(() => {
+        // We need to wait for the auth state to be determined
+        const authCheckComplete = !!user || user === null;
+        if (pathname === '/account/my-profile' && authCheckComplete) {
+            if (user) {
+                router.replace(`/profile/${user.uid}`);
+            } else {
+                router.replace('/login');
+            }
+        }
+    }, [user, pathname, router]);
+
     const handleDrawerNavigation = (path: string) => {
         router.push(path);
         setMobileDrawerOpen(false);
@@ -162,7 +175,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                         </AccordionSummary>
                         <AccordionDetails sx={{ p: 0, backgroundColor: 'action.hover' }}>
                             <List component="div" disablePadding>
-                                <ListItemButton sx={{ pl: 4 }} onClick={() => handleDrawerNavigation('/account/profile')}>
+                                <ListItemButton sx={{ pl: 4 }} onClick={() => handleDrawerNavigation('/account/my-profile')}>
                                     <ListItemIcon sx={{ color: 'text.primary' }}><AccountCircleIcon /></ListItemIcon>
                                     <ListItemText primary={t('Header.menu.profile')} />
                                 </ListItemButton>
@@ -348,7 +361,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                                         <Box sx={{ pl: 2, pr: 4, py: 1 }}>
                                             <Typography variant="subtitle2" fontWeight="bold">Account Management</Typography>
                                         </Box>
-                                        <MenuItem onClick={() => router.push('/account/profile')}>
+                                        <MenuItem onClick={() => router.push('/account/my-profile')}>
                                             <ListItemIcon sx={{ color: 'text.primary' }}>
                                                 <AccountCircleIcon fontSize="small" />
                                             </ListItemIcon>
@@ -461,7 +474,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                         
                         <Box sx={{ display: 'flex', gap: 4 }}>
                             <IconButton color={pathname.startsWith('/notifications') ? "primary" : "inherit"} onClick={() => router.push('/notifications')}><Badge badgeContent={unreadNotifCount} color="error"><NotificationsIcon /></Badge></IconButton>
-                            <IconButton color={pathname.startsWith('/account') ? "primary" : "inherit"} onClick={() => router.push('/account/profile')}><AccountCircleIcon /></IconButton>
+                            <IconButton color={pathname.startsWith('/account') ? "primary" : "inherit"} onClick={() => router.push('/account/my-profile')}><AccountCircleIcon /></IconButton>
                         </Box>
                     </Toolbar>
                     <StyledFab 
