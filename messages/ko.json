@@ -119,5 +119,12 @@
     "instructions": "문제 없습니다. 계정과 연결된 이메일 주소를 입력하시면 비밀번호 재설정 링크를 보내드립니다.",
     "submitButton": "재설정 이메일 보내기",
     "backToLogin": "로그인으로 돌아가기"
+  },
+  "profile": {
+    "anonymous_user": "익명 사용자",
+    "edit_profile_button": "프로필 편집",
+    "member_since": "가입일",
+    "membership_level": "멤버십 등급",
+    "credit_balance": "크레딧 잔액"
   }
 }

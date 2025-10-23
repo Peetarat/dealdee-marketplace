@@ -119,5 +119,12 @@
     "instructions": "没问题。请输入您帐户关联的电子邮件地址，我们将向您发送一个重设密码的链接。",
     "submitButton": "发送重设邮件",
     "backToLogin": "返回登录"
+  },
+  "profile": {
+    "anonymous_user": "匿名用户",
+    "edit_profile_button": "编辑个人资料",
+    "member_since": "会员始于",
+    "membership_level": "会员等级",
+    "credit_balance": "信用余额"
   }
 }

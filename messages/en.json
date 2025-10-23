@@ -119,5 +119,12 @@
     "instructions": "No problem. Enter the email address associated with your account and we'll send you a link to reset your password.",
     "submitButton": "Send Reset Email",
     "backToLogin": "Back to Log In"
+  },
+  "profile": {
+    "anonymous_user": "Anonymous User",
+    "edit_profile_button": "Edit Profile",
+    "member_since": "Member since",
+    "membership_level": "Membership Level",
+    "credit_balance": "Credit Balance"
   }
 }

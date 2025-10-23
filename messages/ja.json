@@ -119,5 +119,12 @@
     "instructions": "問題ありません。アカウントに関連付けられているメールアドレスを入力してください。パスワードをリセットするためのリンクをお送りします。",
     "submitButton": "リセットメールを送信",
     "backToLogin": "ログインに戻る"
+  },
+  "profile": {
+    "anonymous_user": "匿名ユーザー",
+    "edit_profile_button": "プロフィールを編集",
+    "member_since": "以来のメンバー",
+    "membership_level": "会員レベル",
+    "credit_balance": "クレジット残高"
   }
 }

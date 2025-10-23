@@ -1,6 +1,7 @@
-// Cache-busting comment to force re-read
+// This file is now 100% Firebase Functions v2.
 import { onDocumentWritten } from "firebase-functions/v2/firestore";
 import { onCall, HttpsError } from "firebase-functions/v2/https";
+import { onUserCreated } from "firebase-functions/v2/identity"; // The v2 auth trigger.
 import * as admin from "firebase-admin";
 import * as logger from "firebase-functions/logger";
 import algoliasearch from "algoliasearch";
@@ -13,8 +14,42 @@ const algoliaAdminKey = defineString('SECRET_ALGOLIA_ADMIN_KEY');
 // Initialize Firebase Admin SDK
 admin.initializeApp();
 
+// --- WELCOME BOT (v2) ---
+export const createuserprofile = onUserCreated({ region: "asia-southeast1" }, async (event) => {
+  const user = event.data;
+  logger.log(`New user created via v2 trigger: ${user.uid}, Email: ${user.email}`);
+
+  const newUserProfile = {
+    email: user.email || "",
+    displayName: user.displayName || "",
+    photoURL: user.photoURL || "",
+    createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    tier: "standard",
+    tierExpiryDate: null,
+    credits: 0,
+    lastPostTimestamp: null,
+    postCountToday: 0,
+    roles: [],
+    isEmailVisible: false,
+    galleryImages: [],
+    description: "",
+    socialLinks: {},
+  };
+
+  try {
+    const userDocRef = admin.firestore().collection("users").doc(user.uid);
+    await userDocRef.set(newUserProfile);
+    logger.log(`Successfully created Firestore document for user: ${user.uid}`);
+  } catch (error) {
+    logger.error(`Error creating Firestore document for user: ${user.uid}`, error);
+  }
+});
+
+// --- OTHER V2 FUNCTIONS ---
+
 export const onProductWritten = onDocumentWritten({
     document: "products/{productId}",
+    region: "asia-southeast1"
 }, async (event) => {
     const ALGOLIA_ID = algoliaId.value();
     const ALGOLIA_ADMIN_KEY = algoliaAdminKey.value();
@@ -31,8 +66,6 @@ export const onProductWritten = onDocumentWritten({
     const algoliaRecord = { objectID: productId, ...productData, createdAt: productData.createdAt?._seconds };
     return index.saveObject(algoliaRecord);
 });
-
-// --- Callable Functions ---
 
 export const createProduct = onCall({region: "asia-southeast1"}, async (request) => {
     if (!request.auth) throw new HttpsError('unauthenticated', 'You must be logged in.');
@@ -52,29 +85,17 @@ export const createProduct = onCall({region: "asia-southeast1"}, async (request)
 });
 
 export const admin_addCategory = onCall({region: "asia-southeast1"}, async (request) => {
-    if (!request.auth) throw new HttpsError('unauthenticated', 'You must be logged in.');
-
-    // Admin check
+    if (!request.auth) throw new HttpsError('unauthenticated', 'You must be an admin to perform this action.');
     const userDoc = await admin.firestore().collection('users').doc(request.auth.uid).get();
     if (!userDoc.exists || !userDoc.data()?.isAdmin) {
         throw new HttpsError('permission-denied', 'You must be an admin to perform this action.');
     }
-
     const categoryData = {
         id: 'other',
         icon: 'MoreHorizIcon',
-        names: {
-            en: 'Other',
-            th: 'อื่นๆ',
-            ja: 'その他',
-            ko: '기타',
-            zh: '其他',
-            hi: 'अन्य'
-        }
+        names: { en: 'Other', th: 'อื่นๆ', ja: 'その他', ko: '기타', zh: '其他', hi: 'अन्य' }
     };
-
     await admin.firestore().collection('categories').doc('other').set(categoryData);
-
     return { success: true, message: "'Other' category created successfully." };
 });
 

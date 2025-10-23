@@ -9,7 +9,10 @@ interface IThemeContext {
   toggleColorMode: () => void;
 }
 
-const ThemeContext = createContext<IThemeContext>({ toggleColorMode: () => {} });
+const ThemeContext = createContext<IThemeContext>({ 
+  toggleColorMode: () => {},
+  mode: 'light',
+});
 
 export default function AppThemeProvider({ children }: { children: React.ReactNode }) {
   const [mode, setMode] = useState<'light' | 'dark'>('light');

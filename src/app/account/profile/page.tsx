@@ -1,19 +1,38 @@
-'use client';
+''''use client';
 
-import React from 'react';
-import { Container, Typography, Paper } from '@mui/material';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from 'react-firebase-hooks/auth';
+import { auth } from '@/app/firebase';
+import { Box, CircularProgress, Typography } from '@mui/material';
 
-export default function ProfilePage() {
+export default function AccountProfileRedirect() {
+  const [user, loading] = useAuth(auth);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!loading) {
+      if (user) {
+        router.replace(`/profile/${user.uid}`);
+      } else {
+        router.replace('/login');
+      }
+    }
+  }, [user, loading, router]);
+
   return (
-    <Container maxWidth="md">
-      <Paper sx={{ p: 3, mt: 3 }}>
-        <Typography variant="h4" gutterBottom>
-          Profile
-        </Typography>
-        <Typography variant="body1">
-          This is the user profile page. You can edit your profile information here.
-        </Typography>
-      </Paper>
-    </Container>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '80vh',
+      }}
+    >
+      <CircularProgress />
+      <Typography sx={{ mt: 2 }}>Redirecting to your profile...</Typography>
+    </Box>
   );
 }
+''''

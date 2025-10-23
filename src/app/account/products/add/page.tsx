@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { db, auth } from '../../../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
-import { Container, Box, Paper, Typography, TextField, Button, CircularProgress, Grid, Select, MenuItem, InputLabel, FormControl, FormHelperText, Divider, IconButton, RadioGroup, FormControlLabel, Radio, ListItemIcon, Autocomplete, Chip } from '@mui/material';
+import { Container, Box, Paper, Typography, TextField, Button, CircularProgress, Grid, Select, MenuItem, InputLabel, FormControl, FormHelperText, Divider, IconButton, RadioGroup, FormControlLabel, Radio, ListItemIcon, Autocomplete, Chip, SelectChangeEvent } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { useDropzone } from 'react-dropzone';
 
@@ -13,6 +13,7 @@ import UploadFileIcon from '@mui/icons-material/UploadFile';
 import CloseIcon from '@mui/icons-material/Close';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import { collection, getDocs, query, addDoc, serverTimestamp, doc, setDoc } from 'firebase/firestore';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 import { iconMap } from '../../../components/IconMap';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
@@ -69,7 +70,7 @@ export default function AddProductPage() {
         fetchCategories();
     }, []);
 
-    const handleMainCategoryChange = (e: React.ChangeEvent<{ value: unknown }>) => {
+    const handleMainCategoryChange = (e: SelectChangeEvent) => {
         const mainCatId = e.target.value as string;
         setSelectedMainCategoryId(mainCatId);
         setSelectedSubCategoryId(''); // Reset sub-category
@@ -82,13 +83,13 @@ export default function AddProductPage() {
         }
     };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | { name?: string; value: unknown }>) => {
+    const handleSubCategoryChange = (e: SelectChangeEvent) => {
+        setSelectedSubCategoryId(e.target.value as string);
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        if (name === 'subCategoryId') {
-            setSelectedSubCategoryId(value as string);
-        } else {
-            setProductData(prev => ({ ...prev, [name as string]: value }));
-        }
+        setProductData(prev => ({ ...prev, [name as string]: value }));
     };
 
     const onDrop = useCallback((acceptedFiles: File[], type: 'cover' | 'additional') => {
@@ -295,7 +296,7 @@ export default function AddProductPage() {
                                     <Grid item xs={12} sm={6}>
                                         <FormControl fullWidth required>
                                             <InputLabel id="subcategory-label">Sub-Category</InputLabel>
-                                            <Select labelId="subcategory-label" name="subCategoryId" value={selectedSubCategoryId} label="Sub-Category" onChange={handleChange}>
+                                            <Select labelId="subcategory-label" name="subCategoryId" value={selectedSubCategoryId} label="Sub-Category" onChange={handleSubCategoryChange}>
                                                 {subCategoryOptions.map(sub => (
                                                     <MenuItem key={sub.id} value={sub.id}>{sub.names.en || sub.id}</MenuItem>
                                                 ))}
@@ -314,6 +315,7 @@ export default function AddProductPage() {
                                         }}
                                         renderTags={(value: readonly string[], getTagProps) =>
                                             value.map((option: string, index: number) => (
+                                                // eslint-disable-next-line react/jsx-key
                                                 <Chip variant="outlined" label={option} {...getTagProps({ index })} />
                                             ))
                                         }

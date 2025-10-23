@@ -1,7 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/chat/page": "app/chat/page.js",
-  "/account/profile/page": "app/account/profile/page.js",
-  "/products/latest/page": "app/products/latest/page.js",
-  "/account/products/add/page": "app/account/products/add/page.js"
-}
